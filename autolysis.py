@@ -9,8 +9,15 @@ import chardet
 
 # Install dependencies if not present
 # Ensure required dependencies are installed
+def ensure_dependencies(dependencies):
+    for package in dependencies:
+        try:
+            importlib.import_module(package)
+        except ImportError:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
 dependencies = ["pandas", "seaborn", "matplotlib", "httpx", "chardet"]
-subprocess.check_call([sys.executable, "-m", "pip", "install", *dependencies])
+ensure_dependencies(dependencies)
 
 # Constants
 API_URL = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
