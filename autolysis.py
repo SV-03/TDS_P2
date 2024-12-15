@@ -8,11 +8,9 @@ import httpx
 import chardet
 
 # Install dependencies if not present
+# Ensure required dependencies are installed
 dependencies = ["pandas", "seaborn", "matplotlib", "httpx", "chardet"]
-try:
-    import pandas  # Trigger ImportError if not installed
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", *dependencies])
+subprocess.check_call([sys.executable, "-m", "pip", "install", *dependencies])
 
 # Constants
 API_URL = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
